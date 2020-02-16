@@ -1,77 +1,41 @@
 import React from 'react';
-import { AppBar, Toolbar, InputBase, makeStyles, fade } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { AppBar, Toolbar, makeStyles, Grid } from '@material-ui/core'
+import logo from '../image/marvel-logo.jpg'
+import SearchInput from './SearchInput';
 
 const useStyles = makeStyles(theme => ({
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        '&:hover': {
-          backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-          marginLeft: theme.spacing(1),
-          width: 'auto',
-        },
-      },
-      searchIcon: {
-        width: theme.spacing(7),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      favIcon: {
-        width: theme.spacing(7),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-      },
-      inputRoot: {
-        color: 'inherit',
-      },
-      inputInput: {
-        padding: theme.spacing(1, 1, 1, 7),
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-          width: 120,
-          '&:focus': {
-            width: 200,
-          },
-        },
-      },
+    appbar: {
+        backgroundColor: theme.palette.common.white
+    },
+    logoGrid: {
+        textAlign: 'center'
+    },
+    logo: {
+        maxWidth: "50%",
+    }
 }));
 
 function SearchBar (){
     const classes = useStyles();
+
     return(
-        <AppBar position="static">
+        <AppBar 
+            position="static" 
+            className={classes.appbar}
+        >
             <Toolbar>
-            <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                    <SearchIcon />
-                </div>
-                <InputBase
-                    placeholder="Search…"
-                    classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                    }}
-                />
-                <div className={classes.searchIcon}>
-                    <StarBorderIcon />
-                </div>
-            </div>
+                <Grid container>
+                    <Grid item xs={2} lg={2} container>
+                        <Grid item className={classes.logoGrid}>
+                            <img src={logo} alt="logo" className={classes.logo}/>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs lg container alignItems="center">
+                        <Grid item xs={12}>
+                            <SearchInput />
+                        </Grid>
+                    </Grid>
+                </Grid>
             </Toolbar>
         </AppBar>
     );
