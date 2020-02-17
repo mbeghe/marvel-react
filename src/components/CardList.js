@@ -1,29 +1,26 @@
 import React from 'react';
 import { Paper, Grid } from '@material-ui/core';
+import { CardListContext } from '../state/contexts/CardListContext';
+import DetailCard from './DetailCard';
 
-const heroes = [{
-    name: 'Spiderman',
-    power: 'Spider Web'
-    },
-    {
-        name: 'Wolverine',
-        power: 'Claws'
-}];
-
-function CardList(){
-    return(
+const CardList = (props) => {
+    const { Consumer } = CardListContext;
+  
+    return (
         <Grid container spacing={1}>
-            {heroes.map((heroe , ix) => {
-                return(
-                    <Grid item xs={12} sm={6} lg={2} key={ix}>
-                        <Paper elevation={2}>
-                            {heroe.name}
-                        </Paper>
-                    </Grid>
-                );
-            })}
+            <Consumer>
+                {context => (
+                    context.data.list.map((heroe, ix) => {
+                        return (
+                            <Grid item  xs={2} key={ix}>
+                                <DetailCard heroe={heroe}/>
+                            </Grid>
+                        )
+                    })
+                )}
+            </Consumer>
         </Grid>
     );
-}
+  };
 
 export default CardList;

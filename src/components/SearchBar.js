@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'center'
     },
     logo: {
-        maxWidth: "50%",
+        maxWidth: "40%",
     }
 }));
 
